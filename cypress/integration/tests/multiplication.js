@@ -7,14 +7,14 @@ describe(
             ()=>{
                 cy.visit('https://lizardpoint.com/')
                 cy.get('.navbar-nav')
-                .find('li').each(($el, index, $list) =>{
-                    const subjectName=$el.text()
-                    if(subjectName.includes('Math'))
+                .find('a').each(($el, index, $list) =>{
+                    if($el.text() === 'Math')
                     {
-                     cy.get(subjectName)
+                    cy.wrap($el).click()
                     }
                 })
-
+                cy.get(':nth-child(1) > table > tbody > :nth-child(3) > :nth-child(2) > .M').click()
+                
             }
 
         )
