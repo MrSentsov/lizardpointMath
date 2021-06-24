@@ -1,6 +1,10 @@
-import firstInt from "./common/firstInt"
+function getNumber1 () {
+    cy.get("#x4span").invoke("text")
+}
 
-const firstNumber = firstInt
+function getNumber2 () {
+    cy.get("#y4span").invoke("text")
+}
 
 describe(
     "visits the website",
@@ -34,19 +38,14 @@ describe(
         it(
             "Multiplies the two numbers",
             () => {
-                cy.log(firstNumber)
-                cy.then(() => {
-                    const secondNumber = () => {
-                        cy.get("span#y4span")
-                            .text()
-                    }
-                    const answer = () => {
-                        firstNumber * secondNumber
-                    }
+                const num1 = getNumber1()
 
-                    cy.get("input#response").type(answer)
-                })
+                const num2 = getNumber2()
 
+                cy.log(num1)
+
+                // cy.get("#response").type() 
+                // When I am ready to type the answer
             }
         )
     }
