@@ -1,9 +1,9 @@
 function getNumber1 () {
-    cy.get("#x4span").invoke("text")
+    return cy.get("#x4span").invoke("text")
 }
 
 function getNumber2 () {
-    cy.get("#y4span").invoke("text")
+    return cy.get("#y4span").invoke("text")
 }
 
 describe(
@@ -38,13 +38,17 @@ describe(
         it(
             "Multiplies the two numbers",
             () => {
-                const num1 = getNumber1()
 
-                const num2 = getNumber2()
+                cy.get("#x4span").invoke("text")
+                    .as("num1")
+                cy.get("#y4span").invoke("text")
+                    .as("num2")
+                cy.get("@num1").then((subject) => {
+                    subject // String
+                    cy.get("#response").type(subject) // Logs 'foo'
+                })
 
-                cy.log(num1)
-
-                // cy.get("#response").type() 
+                cy.get("#response").type(answer)
                 // When I am ready to type the answer
             }
         )
