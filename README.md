@@ -1,2 +1,2 @@
 # lizardpointMath
-An automatic math-problem solver.
+An automatic 3-digit multiplication problem solver created from scratch. 
