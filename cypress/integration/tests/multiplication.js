@@ -6,6 +6,10 @@ function getNumber2 () {
     return cy.get("#y4span").invoke("text")
 }
 
+function multiply (num1, num2) {
+    return num1 * num2
+}
+
 describe(
     "visits the website",
     () => {
@@ -38,18 +42,32 @@ describe(
         it(
             "Multiplies the two numbers",
             () => {
+                cy.get("#x4span").then(($num1) => {
+                    const num1 = $num1.text()
 
-                cy.get("#x4span").invoke("text")
-                    .as("num1")
-                cy.get("#y4span").invoke("text")
-                    .as("num2")
-                cy.get("@num1").then((subject) => {
-                    subject // String
-                    cy.get("#response").type(subject) // Logs 'foo'
+                    cy.get("#y4span").then(($num2) => {
+                        const num2 = $num2.text()
+
+                        const num3 = multiply(
+                            num1,
+                            num2
+                        )
+
+                        cy.get("#response").type(num3)
+                    })
                 })
 
-                cy.get("#response").type(answer)
-                // When I am ready to type the answer
+                // Cy.get("#x4span").invoke("text")
+                //     .as("num1")
+                // Cy.get("#y4span").invoke("text")
+                //     .as("num2")
+                // Cy.get("@num1").then((subject) => {
+                //     Subject
+                //     Cy.get("#response").type(subject) // Logs 'foo'
+                // })
+
+                // Cy.get("#response").type(answer)
+                // // When I am ready to type the answer
             }
         )
     }
